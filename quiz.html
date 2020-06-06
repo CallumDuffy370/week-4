@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Quiz</title>
+    <link rel="stylesheet" href="styleh3.css" />
+  </head>
+  <body>
+
+<div class="quizsection">
+    <button onclick="startQuiz()" id="startQuiz">Start Quiz</button>
+    <div id="questions"></div> 
+</div>
+
+<script>
+   
+    var allQuestions = [{
+        question: "How many toes does someone have?",
+        choices: ["4", "10", "16"],
+        correctAnswer: 1
+      },
+
+      {
+        question: "Who is the Brittish pm",
+        choices: ["Borris Johnston", "Donnald Trump", "Xi Jinping"],
+        correctAnswer: 0
+      },
+
+      {
+        question: "what is 2 + 2",
+        choices: ["21", "2", "4", "9"],
+        correctAnswer: 2
+      },
+
+      {
+        question: "Which of these should you not drink",
+        choices: ["Mercury", "Water", "Mango Juice", "Milk"],
+        correctAnswer: 0
+      },
+
+    
+
+    ];
+
+//Function to start the quiz
+function startQuiz(){
+    
+    var i;
+    var j;
+    var k;
+    for(i=0; i<allQuestions.length; i++){
+        document.getElementById("questions").innerHTML +='<form id="question">Q'+(i+1)+': '+ allQuestions[i].question;
+        
+        for(j=0; j<allQuestions[i].choices.length; j++){
+        	document.forms[i].innerHTML += '</div><div class="answer"><input name="q1" value="'+ allQuestions[i].choices[j] +'" id="value4" type="checkbox" />' + allQuestions[i].choices[j] + '<br/>';
+         }
+     document.getElementById("questions").innerHTML +='</form><br/><br/>';
+    }
+    
+    document.getElementById("questions").innerHTML += '<button onclick="solveQuiz()">Solve Quiz</button>';
+    
+}
+
+function solveQuiz(){
+    	var x;
+        var txt = ' ';
+        var i = 0;
+        var correct = 0; 
+        for(i = 0; i < document.forms[i].length;i++) { 
+        	x = document.forms[i]; 
+        	if(x[i].checked) { 
+            	correctAnswer = allQuestions[i].correctAnswer;
+                if(x[i].value == allQuestions[i].choices[correctAnswer]){
+                	correct += 1;
+                }
+            }
+         }
+        document.getElementById("questions").innerHTML += 'Correct answers: ' + correct;
+}
+
+</script>
+</body>
+</html>
